@@ -8,7 +8,8 @@ RUN apk --no-cache add ca-certificates ${ADDITIONAL_PACKAGE}
 RUN addgroup -S app && adduser app -S -G app
 WORKDIR /home/app/
 COPY run.py           .
-COPY requirements.txt   .
+COPY verifier.py       .
+COPY requirements.txt .
 RUN chown -R app /home/app &&   mkdir -p /home/app/python && chown -R app /home/app
 USER app
 ENV PATH=$PATH:/home/app/.local/bin:/home/app/python/bin/
