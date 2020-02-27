@@ -15,7 +15,7 @@ def protocol(message, verify_function=verifier.verify):
     except Exception as j:
         return create_reply(BAD_JSON, str(j))
     try:
-        errs = verify_function(content)
+        errs = verify_function(message)
     except Exception as v:
         return create_reply(BAD_VERIFIER, "Verifier exception: {!r}".format(v))
     if not isinstance(errs, list):
