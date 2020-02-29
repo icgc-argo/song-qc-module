@@ -1,22 +1,25 @@
+#!/usr/bin/env python3
 import unittest
 
 from run import protocol
+import json
 
 
 class UnknownPerson(Exception): pass
 
 
-def person_verifier(json):
-    if json['name'] == "Kevin":
+def person_verifier(message):
+    content = json.loads(message)
+    if content['name'] == "Kevin":
         return []
-    if json['name'] == "Rob":
+    if content['name'] == "Rob":
         return ['Person is not Kevin']
-    if json['name'] == "Alex":
+    if content['name'] == "Alex":
         return "Person is not Kevin"
-    if json['name'] == 'Bashar':
+    if content['name'] == 'Bashar':
         return [{"a": 1, "b": 2}, UnknownPerson('Bashar'), "sadness"]
     else:
-        raise UnknownPerson(format(json['name']))
+        raise UnknownPerson(format(content['name']))
 
 
 class MyTestCase(unittest.TestCase):
@@ -37,6 +40,8 @@ class MyTestCase(unittest.TestCase):
 
     def test_something(self):
         for t in self.test_cases:
+            if len(t) != 3:
+                pass
             actual, expected, msg = protocol(t[0], person_verifier), t[1], t[2]
             self.assertEqual(expected, actual, msg=msg)
 
