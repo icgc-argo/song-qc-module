@@ -48,8 +48,6 @@ def read_message(filehandle):
 
 def write_message(filehandle, message):
     filehandle.write(message)
-    print(message)
-
 
 if __name__ == "__main__":
     serve()

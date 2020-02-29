@@ -19,7 +19,7 @@ WORKDIR /home/app/
 USER root
 RUN chown -R app:app ./ &&   chmod -R 777 /home/app/python
 USER app
-ENV fprocess="python3 run.py"
+ENV fprocess="python3 run.py" content_type="application/json"
 EXPOSE 8080
 HEALTHCHECK --interval=3s CMD [ -e /tmp/.lock ] || exit 1
 CMD ["fwatchdog"]
