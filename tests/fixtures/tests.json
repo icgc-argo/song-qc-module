@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "input": "<json><name>Kevin</name></json>",
+      "expected_output": "{\"status\": \"ISSUES\", \"details\": [\"BAD JSON: Expecting value: line 1 column 1 (char 0)\"]}",
+      "test_description": "Invalid Json"
+    },
+    {
+      "input": "{\"name\": \"Kevin\"}",
+      "expected_output": "{\"status\": \"OK\", \"details\": []}",
+      "test_description": "Valid -- No errors"
+    },
+    {
+      "input": "{\"name\": \"Rob\"}",
+      "expected_output": "{\"status\": \"ISSUES\", \"details\": [\"Person is not Kevin\"]}",
+      "test_description": "Valid -- errors"
+    },
+    {
+      "input": "{\"name\": \"Alex\"}",
+      "expected_output": "{\"status\": \"VERIFIER_ERROR\", \"details\": [\"Verifier must return a list of strings, not a <class 'str'>\"]}",
+      "test_description": "Verifier doesn't return list"
+    },
+    {
+      "input": "{\"name\": \"Bashar\"}",
+      "expected_output": "{\"status\": \"VERIFIER_ERROR\", \"details\": [\"Non string object in list -- element 0 has type <class 'dict'> instead.\"]}",
+      "test_description": "list contains non-strings"
+    },
+    {
+      "input": "{\"name\": \"Rosi\"}",
+      "expected_output": "{\"status\": \"VERIFIER_ERROR\", \"details\": [\"Verifier exception: UnknownPerson('Rosi')\"]}",
+      "test_description": "Verifier throws exception"
+    }
+  ]
+}

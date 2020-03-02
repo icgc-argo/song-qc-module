@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import json
 
-
 # fictional example verifier
 def verify(message):
     errs = []
@@ -25,31 +24,3 @@ def verify(message):
         if 'fileMd5sum' not in f:
             errs.append('You must include the md5sum for file "{}"'.format(f['fileName']))
     return errs
-
-
-def test():
-    analysis = '''{"studyId":"study1","analysisType":{"name":"variantCall","version":null},"samples":[{
-    "sampleId":null,"specimenId":null,"submitterSampleId":null,"matchedNormalSubmitterSampleId":null,
-    "sampleType":null,"specimen":{"submitterSpecimenId":"abcd"},"donor":{"donorId":null,"studyId":null,"gender":null,
-    "submitterDonorId":"DO1234"}}]} '''
-    print(verify(analysis))
-
-def test2():
-    analysis = '''{"studyId":"study1","analysisType":{"name":"variantCall","version":null},"samples":[{
-        "sampleId":null,"specimenId":null,"submitterSampleId":null,"matchedNormalSubmitterSampleId":null,
-        "sampleType":null,"specimen":{"submitterSpecimenId":"abcd"},"donor":{"donorId":null,"studyId":null,"gender":null,
-        "submitterDonorId":"DO1234"}}],"files":[]}'''
-    print(verify(analysis))
-
-def test3():
-    analysis = '''{"studyId":"study1","analysisType":{"name":"variantCall","version":null},"samples":[{ 
-    "sampleId":null,"specimenId":null,"submitterSampleId":null,"matchedNormalSubmitterSampleId":null, 
-    "sampleType":null,"specimen":{"submitterSpecimenId":"abcd"},"donor":{"donorId":null,"studyId":null,"gender":null, 
-    "submitterDonorId":"DO1234"}}],"files":[{"fileName":"test.bam.gz","fileType":"BAM"},{"fileName":"test.fasta",
-    "fileType":"FASTA"}]} '''
-    print(verify(analysis))
-
-
-
-if __name__ == "__main__":
-    test()
