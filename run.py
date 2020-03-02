@@ -4,8 +4,7 @@ import sys
 
 import verifier
 
-BAD_JSON = "BAD_JSON"
-BAD_VERIFIER = "VERIFIER_ERROR"
+ERROR= "VERIFIER_ERROR"
 ISSUES = "ISSUES"
 OK = "OK"
 
@@ -14,18 +13,18 @@ def protocol(message, verify_function=verifier.verify):
     try:
         json.loads(message)
     except Exception as j:
-        return create_reply(BAD_JSON, [str(j)])
+        return create_reply(ISSUES, ["BAD JSON: "+ str(j)])
 
     try:
         errs = verify_function(message)
     except Exception as v:
-        return create_reply(BAD_VERIFIER, ["Verifier exception: {!r}".format(v)])
+        return create_reply(ERROR, ["Verifier exception: {!r}".format(v)])
     if not isinstance(errs, list):
-        return create_reply(BAD_VERIFIER, ["Verifier must return a list of strings, not a {!s}".format(type(errs))])
+        return create_reply(ERROR, ["Verifier must return a list of strings, not a {!s}".format(type(errs))])
 
     for i, s in enumerate(errs):
         if not isinstance(s, str):
-            return create_reply(BAD_VERIFIER,
+            return create_reply(ERROR,
                                 ["Non string object in list -- element {} has type {} instead.".format(i, type(s))])
     if errs:
         return create_reply(ISSUES, errs)

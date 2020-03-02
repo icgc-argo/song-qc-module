@@ -23,7 +23,7 @@ def person_verifier(message):
 
 
 class MyTestCase(unittest.TestCase):
-    test_cases = [("<json><name>Kevin</name></json>", '{"status": "BAD_JSON", "details": ["Expecting value: line 1 '
+    test_cases = [("<json><name>Kevin</name></json>", '{"status": "ISSUES", "details": ["BAD JSON: Expecting value: line 1 '
                                                       'column 1 (char 0)"]}', "Invalid Json"),
                   ('{"name": "Kevin"}', '{"status": "OK", "details": []}', "Valid -- No errors"),
                   ('{"name": "Rob"}', '{"status": "ISSUES", "details": [\"Person is not Kevin\"]}', "Valid -- errors"),
