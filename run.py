@@ -6,26 +6,29 @@ import verifier
 
 BAD_JSON = "BAD_JSON"
 BAD_VERIFIER = "VERIFIER_ERROR"
+ISSUES = "ISSUES"
 OK = "OK"
 
 
 def protocol(message, verify_function=verifier.verify):
     try:
-        content = json.loads(message)
+        json.loads(message)
     except Exception as j:
-        return create_reply(BAD_JSON, str(j))
+        return create_reply(BAD_JSON, [str(j)])
+
     try:
         errs = verify_function(message)
     except Exception as v:
-        return create_reply(BAD_VERIFIER, "Verifier exception: {!r}".format(v))
+        return create_reply(BAD_VERIFIER, ["Verifier exception: {!r}".format(v)])
     if not isinstance(errs, list):
-        return create_reply(BAD_VERIFIER, "Verifier must return a list of strings, not a {!s}".format(type(errs)))
+        return create_reply(BAD_VERIFIER, ["Verifier must return a list of strings, not a {!s}".format(type(errs))])
 
     for i, s in enumerate(errs):
         if not isinstance(s, str):
             return create_reply(BAD_VERIFIER,
-                                "Non string object in list -- element {} has type {} instead.".format(i,type(s)))
-
+                                ["Non string object in list -- element {} has type {} instead.".format(i, type(s))])
+    if errs:
+        return create_reply(ISSUES, errs)
     return create_reply(OK, errs)
 
 
@@ -48,6 +51,7 @@ def read_message(filehandle):
 
 def write_message(filehandle, message):
     filehandle.write(message)
+
 
 if __name__ == "__main__":
     serve()

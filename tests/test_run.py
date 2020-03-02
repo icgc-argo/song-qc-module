@@ -23,19 +23,19 @@ def person_verifier(message):
 
 
 class MyTestCase(unittest.TestCase):
-    test_cases = [("<json><name>Kevin</name></json>", '{"status": "BAD_JSON", "details": "Expecting value: line 1 '
-                                                      'column 1 (char 0)"}', "Invalid Json"),
+    test_cases = [("<json><name>Kevin</name></json>", '{"status": "BAD_JSON", "details": ["Expecting value: line 1 '
+                                                      'column 1 (char 0)"]}', "Invalid Json"),
                   ('{"name": "Kevin"}', '{"status": "OK", "details": []}', "Valid -- No errors"),
-                  ('{"name": "Rob"}', '{"status": "OK", "details": [\"Person is not Kevin\"]}', "Valid -- errors"),
+                  ('{"name": "Rob"}', '{"status": "ISSUES", "details": [\"Person is not Kevin\"]}', "Valid -- errors"),
                   ('{"name": "Alex"}', '{"status": "VERIFIER_ERROR", '
-                                       '"details": "Verifier must return a list of strings, not a <class \'str\'>"}',
+                                       '"details": ["Verifier must return a list of strings, not a <class \'str\'>"]}',
                    "Verifier doesn't return list"),
                   ('{"name": "Bashar"}',
                    '{"status": "VERIFIER_ERROR", '
-                   '"details": "Non string object in list -- element 0 has type <class \'dict\'> instead."}',
+                   '"details": ["Non string object in list -- element 0 has type <class \'dict\'> instead."]}',
                    "list contains non-strings"),
                   ('{"name": "Rosi"}',
-                   '{"status": "VERIFIER_ERROR", "details": "Verifier exception: UnknownPerson(\'Rosi\')"}',
+                   '{"status": "VERIFIER_ERROR", "details": ["Verifier exception: UnknownPerson(\'Rosi\')"]}',
                    "Verifier throws exception")]
 
     def test_something(self):
