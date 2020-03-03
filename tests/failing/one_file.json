@@ -1,0 +1,3 @@
+{"analysisType": {"name": "variantCall"},
+ "files": [{"fileType": "BAM", "fileName": "sample1.bam"}]
+}
