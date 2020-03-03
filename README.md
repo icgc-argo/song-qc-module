@@ -25,7 +25,7 @@ When the Dockerfile is run, it creates a REST server on port 8080 which calls ve
 
 ```
 docker build . -t sidecar
-docker run -p8080:8080 sidecar
+docker run -p 8080:8080 sidecar
 ```
 
 **To use with SONG**

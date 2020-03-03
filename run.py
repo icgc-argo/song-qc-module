@@ -10,6 +10,8 @@ OK = "OK"
 
 
 def protocol(message, verify_function=verifier.verify):
+    if !message:
+	return create_reply(ISSUES,["NO JSON: Recieved empty message"])
     try:
         json.loads(message)
     except Exception as j:
