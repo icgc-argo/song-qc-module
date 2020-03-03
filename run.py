@@ -4,18 +4,18 @@ import sys
 
 import verifier
 
-ERROR= "VERIFIER_ERROR"
+ERROR = "VERIFIER_ERROR"
 ISSUES = "ISSUES"
 OK = "OK"
 
 
 def protocol(message, verify_function=verifier.verify):
-    if !message:
-	return create_reply(ISSUES,["NO JSON: Recieved empty message"])
+    if not message:
+        return create_reply(ISSUES, ["NO JSON: Received empty message"])
     try:
         json.loads(message)
     except Exception as j:
-        return create_reply(ISSUES, ["BAD JSON: "+ str(j)])
+        return create_reply(ISSUES, ["BAD JSON: " + str(j)])
 
     try:
         errs = verify_function(message)

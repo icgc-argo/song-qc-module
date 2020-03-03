@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 
+
 # fictional example verifier
 def verify(message):
     errs = []
@@ -15,8 +16,8 @@ def verify(message):
 
     for f in files:
         if f['fileType'] == 'BAM':
-            indexFile = f['fileName'].replace('bam', 'bai')
-            if indexFile not in [i['fileName'] for i in files]:
+            index_file = f['fileName'].replace('bam', 'bai')
+            if index_file not in [i['fileName'] for i in files]:
                 errs.append('You must include an index file for file "{}"'.format(f['fileName']))
         elif f['fileType'] == 'XML':
             raise Exception("Demonstrate exception handling")
