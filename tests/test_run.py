@@ -24,7 +24,7 @@ def person_verifier(message):
 
 class MyTestCase(unittest.TestCase):
     def test_something(self):
-        with open("fixtures/tests.json") as fh:
+        with open("tests/fixtures/tests.json") as fh:
             test_cases = json.load(fh)
 
         for t in test_cases['tests']:

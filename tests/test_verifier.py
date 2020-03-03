@@ -9,9 +9,9 @@ import json
 class MyTestCase(unittest.TestCase):
     def test_success(self):
         failures=False
-        for f in listdir("passing"):
+        for f in listdir("tests/passing"):
             print("Testing file {} (should pass)...".format(f))
-            with open("passing/" + f) as fh:
+            with open("tests/passing/" + f) as fh:
                 input = fh.read()
             actual = protocol(input)
             status = json.loads(actual)['status']
@@ -24,9 +24,9 @@ class MyTestCase(unittest.TestCase):
 
     def test_fail(self):
         success = False
-        for f in listdir("failing"):
+        for f in listdir("tests/failing"):
             print("Testing file {} (should fail)".format(f))
-            with open("failing/" + f) as fh:
+            with open("tests/failing/" + f) as fh:
                 input = fh.read()
             actual = protocol(input)
             status = json.loads(actual)['status']
