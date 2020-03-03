@@ -14,7 +14,7 @@ Files which contain sample inputs for which the verifier program should fail (pr
 To run the tests, run 
 
 ```
-python3 -m pytest
+python3 -m pytest -s -v
 ```
 
 **To run the REST Server**

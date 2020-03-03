@@ -5,7 +5,8 @@ from run import protocol
 import json
 
 
-class UnknownPerson(Exception): pass
+class UnknownPerson(Exception):
+    pass
 
 
 def person_verifier(message):

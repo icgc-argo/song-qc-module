@@ -8,18 +8,18 @@ import json
 
 class MyTestCase(unittest.TestCase):
     def test_success(self):
-        failures=False
+        failures = False
         for f in listdir("tests/passing"):
             print("Testing file {} (should pass)...".format(f))
             with open("tests/passing/" + f) as fh:
-                input = fh.read()
-            actual = protocol(input)
+                input_ = fh.read()
+            actual = protocol(input_)
             status = json.loads(actual)['status']
-            if (status == "OK"):
+            if status == "OK":
                 print("OK")
             else:
                 print("FAILED")
-                failures=True
+                failures = True
         self.assertFalse(failures)
 
     def test_fail(self):
@@ -27,10 +27,10 @@ class MyTestCase(unittest.TestCase):
         for f in listdir("tests/failing"):
             print("Testing file {} (should fail)".format(f))
             with open("tests/failing/" + f) as fh:
-                input = fh.read()
-            actual = protocol(input)
+                input_ = fh.read()
+            actual = protocol(input_)
             status = json.loads(actual)['status']
-            if (status == "OK"):
+            if status == "OK":
                 print("OK (wrong -- test should FAIL!")
                 success = True
             else:

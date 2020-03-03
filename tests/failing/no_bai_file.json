@@ -1,5 +1,5 @@
 {"analysisType": {"name": "variantCall"},
  "files": [{"fileType": "BAM", "fileName": "sample1.bam", "fileMd5sum":"aabbcc"},
-           {"fileType": "CRAM", "fileName":"sample2.cram", fileMd5sum:"a1b2c3"}
+           {"fileType": "CRAM", "fileName":"sample2.cram", "fileMd5sum":"a1b2c3"}
           ]
 }
