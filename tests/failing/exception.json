@@ -1,7 +1,7 @@
 {"analysisType": {"name": "variantCall"},
  "files": [{"fileType": "BAM", "fileName": "sample1.bam", "fileMd5sum":"aabbcc"},
            {"fileType": "CRAM", "fileName":"sample2.cram", "fileMd5sum": "a1b2c3"},
-           {"fileType": "BAI", "fileName": "sample1.bai", "fileMd5sum": "abcd"}
+           {"fileType": "BAI", "fileName": "sample1.bai", "fileMd5sum": "abcd"},
            {"fileType": "XML", "fileName": "sample3.xml", "fileMd5sum": "bcda123"}
           ]
 }
